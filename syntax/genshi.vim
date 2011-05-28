@@ -14,12 +14,8 @@ elseif exists("b:current_syntax")
   finish
 endif
 
-if !exists("main_syntax")
-  let main_syntax = 'html'
-endif
-
-" Source the html syntax file
-ru! syntax/html.vim
+" Source the xml syntax file
+ru! syntax/xml.vim
 unlet b:current_syntax
 
 " Put the python syntax file into @pythonTop
@@ -31,16 +27,16 @@ syn region genshiVariable matchgroup=genshiDelim start=#\${# end=#}# contains=ge
 
 " Helpers
 syn match genshiEscape "&[^;]\+;" contained
-syn region genshiAttrRegion matchgroup=htmlString start='"' end='"' keepend contained contains=genshiEscape,@pythonTop
-syn region genshiAttrRegion matchgroup=htmlString start="'" end="'" keepend contained contains=genshiEscape,@pythonTop
+syn region genshiAttrRegion matchgroup=xmlString start='"' end='"' keepend contained contains=genshiEscape,@pythonTop
+syn region genshiAttrRegion matchgroup=xmlString start="'" end="'" keepend contained contains=genshiEscape,@pythonTop
 
 " Genshi Attributes
-syn match genshiAttr "\<py:\(for\|if\|choose\|when\|otherwise\|def\|match\|with\|content\|replace\|strip\|attrs\)\s*=\s*" contained containedin=htmlTag nextgroup=genshiAttrRegion
+syn match genshiAttr "\<py:\(for\|if\|choose\|when\|otherwise\|def\|match\|with\|content\|replace\|strip\|attrs\)\s*=\s*" contained containedin=xmlTag nextgroup=genshiAttrRegion
 
 " Genshi Tags
 syn match genshiTagAttr "\<test\|each\|function\|path\|\>=" contained nextgroup=genshiAttrRegion
-syn match genshiTag "\<py:\(for\|if\|def\|match\|with\)\>" contained containedin=htmlTagN
-syn region htmlTag start="<py:\(for\|if\|def\|match\|with\)" end=">" keepend contains=genshiTag,genshiTagAttr,htmlString,htmlArg,htmlValue,htmlEvent,htmlCssDefinition,@htmlPreproc,@htmlArgCluster
+syn match genshiTag "\<py:\(for\|if\|def\|match\|with\)\>" contained containedin=xmlTagN
+syn region xmlTag start="<py:\(for\|if\|def\|match\|with\)" end=">" keepend contains=genshiTag,genshiTagAttr,xmlString,xmlArg,xmlValue,xmlEvent,xmlCssDefinition,@xmlPreproc,@xmlArgCluster
 
 
 " Default highlighting links
