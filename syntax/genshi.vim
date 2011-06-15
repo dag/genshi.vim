@@ -15,11 +15,11 @@ elseif exists("b:current_syntax")
 endif
 
 if !exists("main_syntax")
-  let main_syntax = 'html'
+  let main_syntax = 'xhtml'
 endif
 
 " Source the html syntax file
-ru! syntax/html.vim
+ru! syntax/xhtml.vim
 unlet b:current_syntax
 
 " Put the python syntax file into @pythonTop
