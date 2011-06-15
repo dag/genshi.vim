@@ -25,6 +25,8 @@ unlet b:current_syntax
 " Put the python syntax file into @pythonTop
 syn include @pythonTop syntax/python.vim
 
+syn region pythonRegion start="<?python" end="?>" contains=@pythonTop contained containedin=htmlTag
+
 " Variables
 syn region genshiNested start="{" end="}" transparent display contained contains=genshiNested,@pythonTop
 syn region genshiVariable matchgroup=genshiDelim start=#\${# end=#}# contains=genshiNested,@pythonTop containedin=ALL
